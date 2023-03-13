@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import {
     TabBar,
     NavBar,
@@ -16,7 +16,6 @@ import {
 } from 'react-router-dom'
 
 const Bottom: FC = () => {
-    const navigate = useNavigate()
     const tabs = [{
         key: '/',
         title: 'group',
@@ -38,18 +37,21 @@ const Bottom: FC = () => {
     )
 }
 
-export default function Root() { 
-    return (
-        <div className="app">
-            <div className='top'>
-                <NavBar children="Title"></NavBar>
+export default class Root extends React.Component {
+    
+    render(): React.ReactNode {
+        return (
+            <div className="app">
+                <div className='top'>
+                    <NavBar children="Title"></NavBar>
+                </div>
+                <div className="body">
+                    <Outlet />
+                </div>
+                <div className="bottom">
+                    <Bottom />
+                </div>
             </div>
-            <div className="body">
-                <Outlet/>
-            </div>
-            <div className="bottom">
-                <Bottom />
-            </div>
-        </div>
-    )
+        )
+    }
 }
