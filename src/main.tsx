@@ -6,28 +6,27 @@ import {
 } from 'react-router-dom'
 import './index.css'
 
-import App from "./App";
-import Chat from "./views/chat";
-import My from "./views/my";
-import Group from "./views/group";
-import Login from "./views/login";
+import Root from "./router/Root";
+import ErrorPage from "./views/error/error-page";
+import Login from './views/login/login'
+import My from './views/my/my'
+import Group from './views/group/group'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [{
+      index: true,
+      element: <Group />
+    }, {
+      path: "/my",
+      element: <My />
+    }]
   }, {
-    path: "login",
-    element: <Login />,
-  }, {
-    path: "my",
-    element: <My />,
-  }, {
-    path: "group",
-    element: <Group />,
-  }, {
-    path: "chat",
-    element: <Chat />,
+    path: "/login",
+    element: <Login />
   }
 ])
 
